@@ -1,0 +1,131 @@
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 100px;
+    padding: 0;
+}
+
+h2 {
+    color: #333;
+}
+
+div.pregunta-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+
+div.pregunta-item h3 {
+    color: #337ab7;
+}
+
+div.pregunta-item p {
+    font-size: 14px;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px 0;
+}
+
+form input[type="text"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Make sure padding does not affect total width */
+}
+
+form button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #4cae4c;
+}
+
+/* Estilo para botones de acción */
+button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e8e8e8;
+}
+
+button.eliminar {
+    border-color: #d9534f;
+    color: #d9534f;
+}
+
+button.eliminar:hover {
+    background-color: #d9534f;
+    color: white;
+}
+
+button.modificar {
+    border-color: #f0ad4e;
+    color: #f0ad4e;
+}
+
+button.modificar:hover {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+
+</style>
+<div>
+    <h2>Preguntas Frecuentes</h2>
+    <div ng-repeat="pregunta in preguntasFrecuentes">
+        <!-- Modo de visualización -->
+        <div ng-if="!pregunta.editando">
+            <h3>{{ pregunta.pregunta }}</h3>
+            <p>{{ pregunta.respuesta }}</p>
+            <button ng-click="habilitarEdicion(pregunta)">Editar</button>
+            <button ng-click="eliminarPregunta(pregunta.id)">Eliminar</button>
+        </div>
+        <!-- Modo de edición -->
+        <div ng-if="pregunta.editando">
+            <input type="text" ng-model="pregunta.pregunta" />
+            <textarea ng-model="pregunta.respuesta"></textarea>
+            <button ng-click="actualizarPregunta(pregunta)">Actualizar</button>
+            <button ng-click="cancelarEdicion(pregunta)">Cancelar</button>
+        </div>
+    </div>
+
+    <h2>Agregar Nueva Pregunta Frecuente</h2>
+    <form ng-submit="agregarPreguntaFrecuente(nuevaPregunta, nuevaRespuesta)">
+        <label>Pregunta:</label>
+        <input type="text" ng-model="nuevaPregunta" required />
+        <label>Respuesta:</label>
+        <textarea ng-model="nuevaRespuesta" required></textarea>
+        <button type="submit">Agregar Pregunta</button>
+    </form>
+</div>
+

@@ -1,0 +1,88 @@
+<style>
+    /* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 200px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: calc(50% - 10px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para los tickets */
+.ticket {
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+
+.ticket h3 {
+    color: #007bff;
+}
+
+.ticket p {
+    margin-bottom: 5px;
+}
+
+.ticket hr {
+    border: none;
+    border-top: 1px solid #ced4da;
+    margin: 10px 0;
+}
+
+</style>
+<div>
+    <h2>Historial de Tickets</h2>
+    <input type="text" ng-model="searchKeyword" placeholder="Buscar por palabra clave, categoría o prioridad">
+    <input type="number" ng-model="searchTicketNumber" placeholder="Buscar por número de ticket">
+    
+    <button ng-click="buscar()">Buscar</button>
+
+    <div ng-repeat="ticket in tickets">
+        <div class="ticket">
+            <h3>{{ ticket.id }}</h3>
+            <p><strong>Descripción:</strong> {{ ticket.descripcion }}</p>
+            <p><strong>Categoría:</strong> {{ ticket.categoria }}</p>
+            <p><strong>Prioridad:</strong> {{ ticket.prioridad }}</p>
+        </div>
+    </div>
+</div>
+

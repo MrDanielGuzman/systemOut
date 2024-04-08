@@ -1,0 +1,30 @@
+<main class="login-main">
+    <form class="login-form" ng-submit="login.login()" name="myForm" novalidate>
+        <header class="login-header">
+            <h4>Login</h4>
+        </header>
+        <div class="form-wrapper">
+            <input id="input" type="text" class="login-input" ng-model="login.username" required>
+            <label for="input" class="login-label">Usuario</i></label>
+            <i class="fa fa-user-circle-o login-icon" aria-hidden="true"></i>
+        </div>
+        <div class="form-wrapper">
+            <input id="password" type="password" class="login-input" ng-model="login.password" required>
+            <label for="password" class="login-label">Contraseña</label>
+            
+            <i class="material-icons login-icon">lock</i>
+        </div>
+        <div class="error-message" ng-if="login.errorMessage">{{ login.errorMessage }}</div>
+        <div class="remember-box">
+            <div class="remember">
+                <input type="checkbox">
+                <span class="remember-text">Recordar</span>
+            </div>
+            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
+        <button ng-submit="login.login()" type="submit" class="login-button">Login</button>
+        <div class="new-account">
+            No tienes cuenta? <a href="#" class="signup-link">Crear cuenta</a>
+        </div>
+    </form>
+</main>

@@ -1,0 +1,71 @@
+<style>
+    /* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.container {
+    max-width: 600px;
+    margin: 200px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<div ng-controller="RegistroClienteController">
+    <h2>Registro de Cliente</h2>
+    <form ng-submit="registrarCliente()">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" ng-model="cliente.nombre" required><br>
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" ng-model="cliente.direccion" required><br>
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" ng-model="cliente.telefono" required><br>
+        <button type="submit">Registrarse</button>
+    </form>
+</div>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+    <title>SysOut Software</title>
+</head>
+
+<body ng-app="miApp" ng-controller="indexController">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-nav">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#!home">Plataforma</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{ 'active' : linkActivo('/home')} "><a href="#!home"> <span
+                                class="hidden-md hidden-sm">Inició</span><i class="fa fa-home ajustes-icono"></i></a>
+                    </li>
+
+                    <li ng-class=" {'active' : linkActivo('/avaluoVehiculos')} " ng-if="isLogued"><a
+                            href="#!systemOut"><span class="hidden-md hidden-sm">SystemOut</span><i
+                                class="fa fa-code ajustes-icono" aria-hidden="true"></i></a></li>
+
+                    <li ng-class=" {'active' : linkActivo('/creacionTicket')} " ng-if="isLogued"><a
+                            href="#!creacionTicket"> <span class="hidden-md hidden-sm">Creación Ticket</span><i
+                                class="fa fa-file ajustes-icono" aria-hidden="true"></i></a> </li>
+
+                    <li ng-class="{ 'active' : linkActivo('/registroCliente') || linkActivo('/presupuesto') || linkActivo('/metodoPago') }"
+                        ng-if="isLogued" class="dropdown">
+                        <a class="dropdown-toggle"><span class="hidden-md hidden-sm">Cliente</span><i
+                                class="fa fa-user ajustes-icono"></i></a>
+                        <ul class="dropdown-menu">
+                            <li ng-class="{ 'active' : linkActivo('/registroCliente')}"><a href="#!registroCliente">Registrar cliente</a></li>
+                            <li ng-class="{ 'active' : linkActivo('/presupuesto')}"><a href="#!presupuesto">presupuesto</a></li>
+                            <li ng-class="{ 'active' : linkActivo('/metodoPago')}"><a href="#!metodoPago">metodo de pago</a></li>
+                        </ul>
+                    </li>
+
+                    <li ng-class=" {'active' : linkActivo('/historialTickets')} " ng-if="isLogued"><a
+                            href="#!historialTickets"> <span class="hidden-md hidden-sm">Historial de tickets</span><i
+                                class="fa fa-list ajustes-icono" aria-hidden="true"></i></a> </li>
+                    <li ng-class=" {'active' : linkActivo('/preguntasFrecuentes')} " ng-if="isLogued"><a
+                            href="#!preguntasFrecuentes"> <span class="hidden-md hidden-sm">preguntasFrecuentes</span><i
+                                class="fa fa-comments ajustes-icono" aria-hidden="true"></i></a> </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-class="{ 'active': linkActivo('/login') }">
+                        <a ng-if="!isLogued" href="#!login"><span class="hidden-md hidden-sm">Iniciar sesión</span><i
+                                class="fa fa-sign-in ajustes-icono" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a ng-if="isLogued" ng-click="logOut()" href=""><span class="hidden-md hidden-sm">Cerrar
+                                sesión</span> <i class="fa fa-sign-out ajustes-icono" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div ng-view></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-touch.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.9/angular-resource.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.6/ui-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.6/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/amplifyjs/1.1.2/amplify.min.js"></script>
+    <script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/3.3.7/ui-bootstrap-tpls.min.js"></script>
+    <script src="app.js"></script>
+    <script src="index.js"></script>
+    <script src="Controllers/home.js"></script>
+    <script src="Controllers/systemOutController.js"></script>
+    <script src="Controllers/login.js"></script>
+    <script src="Controllers/creacionTicket.js"></script>
+    <script src="Controllers/registroCliente.js"></script>
+    <script src="Controllers/presupuesto.js"></script>
+    <script src="Controllers/metodoPago.js"></script>
+    <script src="Controllers/historialTickets.js"></script>
+    <script src="Controllers/preguntasFrecuentes.js"></script>
+    <script src="Services/FAQservice.js"></script>
+    <script src="server.js"></script>
+
+</html>
