@@ -32,6 +32,11 @@
       "id": "dad3",
       "pregunta": "¿Puedo usar la aplicación en varios dispositivos?",
       "respuesta": "Sí, tu suscripción te permite acceder a la aplicación desde cualquier dispositivo. Simplemente inicia sesión con tus credenciales para continuar donde lo dejaste"
+    },
+    {
+      "id": "4d65",
+      "pregunta": "¿Cómo Borro mi cuenta?",
+      "respuesta": "En el login hay un apartado para eliminar el perfil"
     }
   ],
   "presupuestos": [],
